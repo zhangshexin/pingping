@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        #开启配置服务发现
+        enabled: true
+        #配置服务实例名称
+        service-id: config-server
+      #配置文件所在分支
+      name: ucenterdb
+      profile: dev
+      label: develop
+      retry:
+        max-interval: 50000
+      fail-fast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://servercenter.ping.sam.com:8090/eureka/
+

@@ -1,0 +1,10 @@
+server:
+  port: 8090
+eureka:
+  instance:
+    hostname: servercenter.ping.sam.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://servercenter.ping.sam.com:8090/eureka/

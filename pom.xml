@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sam.ping</groupId>
+    <artifactId>ping-ping</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>对企业进行评价，帮助应聘者排除&quot;坏&quot;公司的一个项目</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.M2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <!--所有模块-->
+    <modules>
+        <module>server-center</module>
+        <module>config-server</module>
+        <module>u-center</module>
+    </modules>
+
+    <properties>
+        <docker.image.prefix>zhangshexin/pingipng</docker.image.prefix>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Finchley.M2</spring-cloud.version>
+        <server-center.version>0.0.1</server-center.version>
+        <lombok.version>1.16.16</lombok.version>
+        <spring-cloud-starter-netflix-eureka-server.version>1.4.2.RELEASE</spring-cloud-starter-netflix-eureka-server.version>
+        <spring-cloud-starter-netflix-eureka-client.version>1.4.2.RELEASE</spring-cloud-starter-netflix-eureka-client.version>
+        <spring-boot-starter-test.version>1.4.2.RELEASE</spring-boot-starter-test.version>
+        <spring-boot-starter-web.version>1.5.2.RELEASE</spring-boot-starter-web.version>
+        <spring-cloud-config-server.version>1.4.3.RELEASE</spring-cloud-config-server.version>
+        <spring-boot-starter-actuator.version>2.0.1.RELEASE</spring-boot-starter-actuator.version>
+        <spring-cloud-starter-bus-amqp.version>1.3.2.RELEASE</spring-cloud-starter-bus-amqp.version>
+    </properties>
+    <!--强制引入到子pom中-->
+    <dependencies>
+
+    </dependencies>
+    <!--管理依赖，但不强制引入到子pom中去，只作版本和scope的管理-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--生成setter/getter方法-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+                <!--<version>${spring-cloud-starter-netflix-eureka-server.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+                <!--<version>${spring-cloud-starter-netflix-eureka-client.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-starter-test</artifactId>-->
+                <!--<scope>test</scope>-->
+                <!--<version>${spring-boot-starter-test.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-starter-web</artifactId>-->
+                <!--<version>${spring-boot-starter-web.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;配置服务&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-config-server</artifactId>-->
+                <!--<version>${spring-cloud-config-server.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;config center client&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-starter-config</artifactId>-->
+                <!--<version>${spring-cloud-config-server.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;监控仓库变化&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+                <!--<version>${spring-boot-starter-actuator.version}</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash;消息总线&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
+                <!--<version>1.3.2.RELEASE</version>-->
+            <!--</dependency>-->
+        </dependencies>
+    </dependencyManagement>
+
+
+    <!-- 插件 -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+
+                <!-- tag::plugin[] -->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.3.6</version>
+                    <configuration>
+                        <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                        <buildArgs>
+                            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        </buildArgs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- end::plugin[] -->
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <!--依赖的仓库-->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>oss</id>
+            <name>oss</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+
+</project>

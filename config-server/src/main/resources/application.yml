@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: config-server
+#--------bus-------rabbitmq配置-----------
+  rabbitmq:
+    host: bus.ping.sam.com
+    port: 5672
+    username: admin
+    password: admin
+#----config-----git仓库配置------------
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zhangshexin/springboot_test
+#配置文件所在的目录
+          search-paths: /
+      label: develop
+#-------系统配置-----------------
+server:
+  port: 8091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://servercenter.ping.sam.com:8090/eureka/
+#----------actuator---暴露所有的接口，用于刷新配置，通知所有的微服务--------------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

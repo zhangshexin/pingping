@@ -1,0 +1,11 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: u-center
+  #配置bus
+  rabbitmq:
+    host: bus.ping.sam.com
+    port: 5672
+    username: admin
+    password: admin

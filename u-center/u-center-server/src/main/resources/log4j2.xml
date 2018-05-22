@@ -151,7 +151,7 @@
         <logger name="org.springframework.web" level="info"/>
         <logger name="org.jboss.netty" level="warn"/>
         <logger name="org.apache.http" level="warn"/>
-        <logger name="com.sam.ping.ucenter.mapper" level="info"/>
+        <logger name="com.sam.ping.ucenter.dao" level="info"/>
     </Loggers>
 
 </Configuration>

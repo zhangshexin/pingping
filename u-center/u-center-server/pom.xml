@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
-	<description>用户中心</description>
+	<description>用户中心服务</description>
 
 	<parent>
 		<groupId>com.sam.ping</groupId>

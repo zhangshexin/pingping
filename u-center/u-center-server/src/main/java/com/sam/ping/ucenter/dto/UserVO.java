@@ -1,4 +1,4 @@
-package com.sam.ping.ucenter.vos;
+package com.sam.ping.ucenter.dto;
 
 import lombok.Data;
 

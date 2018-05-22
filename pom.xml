@@ -19,9 +19,14 @@
     </parent>
     <!--所有模块-->
     <modules>
+        <!--服务注册中心-->
         <module>registry-center</module>
+        <!--配置中心-->
         <module>config-server</module>
+        <!--用户中心-->
         <module>u-center</module>
+        <!--公共模块-->
+        <module>commons</module>
     </modules>
 
     <properties>

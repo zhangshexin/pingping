@@ -4,31 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.sam.ping</groupId>
-	<artifactId>u-center-api</artifactId>
+	<artifactId>common-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
-	<description>用户中心接口</description>
+	<description>公共核心总分</description>
 
 	<parent>
 		<groupId>com.sam.ping</groupId>
-		<artifactId>u-center</artifactId>
+		<artifactId>commons</artifactId>
 		<version>0.0.1</version>
 	</parent>
-
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>com.sam.ping</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

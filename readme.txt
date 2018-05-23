@@ -14,3 +14,7 @@ docker run --name="eureka-server"  -p 8081:8081 -t zhangshexin/scp/eurekaserver
 docker run --name="eureka-server"  -p 127.0.0.1:8081:8081 -t zhangshexin/scp/eurekaserver
 
 
+###################################
+#swagger查看
+访问地址: http://localhost:端口/swagger-ui.html
+

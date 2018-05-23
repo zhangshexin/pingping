@@ -59,6 +59,6 @@ public interface UserApi {
      * @param userRegistryDTO
      * @return
      */
-    @RequestMapping(value = "/user/modify")
+    @RequestMapping(value = "/user/modify",method = RequestMethod.POST)
     Result<UserDTO> modify(@RequestBody UserRegistryDTO userRegistryDTO);
 }

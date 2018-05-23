@@ -27,7 +27,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 		<!--config center client-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -65,14 +68,24 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 		</dependency>
-		<!--&lt;!&ndash; alibaba的druid数据库连接池 &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>com.alibaba</groupId>-->
-			<!--<artifactId>druid-spring-boot-starter</artifactId>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sam.ping</groupId>
+			<artifactId>u-center-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!--api 文档-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
 		</dependency>
 	</dependencies>
 

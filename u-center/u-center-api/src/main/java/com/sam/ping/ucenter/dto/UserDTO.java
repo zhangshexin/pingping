@@ -7,13 +7,4 @@ import lombok.Data;
  */
 @Data
 public class UserDTO extends UserBaseDTO{
-    /**
-     * 状态码
-     */
-    private int code;
-    /**
-     * 响应描述
-     */
-    private String msg;
-
 }

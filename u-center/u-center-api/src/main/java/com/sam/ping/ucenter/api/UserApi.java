@@ -4,7 +4,6 @@ package com.sam.ping.ucenter.api;
 import com.sam.ping.commoncore.base.Result;
 import com.sam.ping.ucenter.api.hystrix.UserApiHystrix;
 import com.sam.ping.ucenter.dto.UserDTO;
-import com.sam.ping.ucenter.dto.UserRegistryDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +50,7 @@ public interface UserApi {
      * @return
      */
     @RequestMapping(value = "/user/registry",method = RequestMethod.POST)
-    Result<UserDTO> registry(@RequestBody UserRegistryDTO userRegistryDTO);
+    Result<UserDTO> registry(@RequestBody UserDTO userRegistryDTO);
 
 
     /**
@@ -60,5 +59,5 @@ public interface UserApi {
      * @return
      */
     @RequestMapping(value = "/user/modify",method = RequestMethod.POST)
-    Result<UserDTO> modify(@RequestBody UserRegistryDTO userRegistryDTO);
+    Result<UserDTO> modify(@RequestBody UserDTO userRegistryDTO);
 }

@@ -127,6 +127,11 @@
                 <artifactId>dozer</artifactId>
                 <version>${dozer.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer-spring</artifactId>
+                <version>${dozer.version}</version>
+            </dependency>
             <!--api 文档-->
             <dependency>
                 <groupId>io.springfox</groupId>

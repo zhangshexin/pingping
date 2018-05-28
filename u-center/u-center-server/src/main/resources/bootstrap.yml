@@ -19,3 +19,8 @@ eureka:
     service-url:
       defaultZone: http://servercenter.ping.sam.com:8090/eureka/
 
+#===========================================
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.sam.ping.ucenter.entity

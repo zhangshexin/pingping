@@ -44,6 +44,15 @@ public interface UserApi {
     @RequestMapping(value = "/user/check",method = RequestMethod.GET)
     Result<Boolean> check(@RequestParam(value = "userName")String userName);
 
+
+    /**
+     * 检查手机号是否已存在
+     * @param phoneNumber
+     * @return
+     */
+    @RequestMapping(value = "/user/checkPhoneNumber", method = RequestMethod.GET)
+    Result<Boolean> checkPhoneNumber(@RequestParam(value = "phoneNumber")String phoneNumber);
+
     /**
      * 注册用户
      * @param userRegistryDTO

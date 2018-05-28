@@ -9,5 +9,9 @@
             <a>name</a>
             <b>userName</b>
         </field>
+        <field>
+            <a>id</a>
+            <b>userId</b>
+        </field>
     </mapping>
 </mappings>

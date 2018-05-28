@@ -17,6 +17,11 @@ public class UserApiHystrix implements UserApi{
     }
 
     @Override
+    public Result<Boolean> checkPhoneNumber(String phoneNumber) {
+        return Result.fail(Result.DEF_FAIL_MSG);
+    }
+
+    @Override
     public Result<UserDTO> findUserByPhone(String phoneNumber) {
         return Result.fail(Result.DEF_FAIL_MSG);
     }

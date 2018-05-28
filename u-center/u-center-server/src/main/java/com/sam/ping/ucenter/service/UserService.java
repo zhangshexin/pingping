@@ -15,4 +15,18 @@ public class UserService extends BaseService<User,UserMapper>{
     public User findUserByPwd(String phoneNumber, String pwd){
         return dao.findUserByPwd(phoneNumber,pwd);
     }
+
+    public User findUserByPhoneNumber(String phoneNumber){
+        return dao.findUserByPhoneNumber(phoneNumber);
+    }
+
+    /**
+     * 查看是否用户名已存在
+     * @param userName
+     * @return
+     */
+    public User checkUserName(String userName){
+        return dao.checkUserName(userName);
+    }
+
 }

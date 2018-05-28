@@ -9,9 +9,10 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, pwd, email, status, create_date, update_date
+    id, name, pwd, email, status, create_date, update_date,phone_number
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,15 +24,15 @@
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.sam.ping.ucenter.entity.User">
+  <insert id="insert" parameterType="com.sam.ping.ucenter.entity.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into t_user (id, name, pwd, 
       email, status, create_date, 
-      update_date)
+      update_date,phone_number)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP},
-      #{updateDate,jdbcType=TIMESTAMP})
+      #{updateDate,jdbcType=TIMESTAMP},#{phoneNumber,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sam.ping.ucenter.entity.User">
+  <insert id="insertSelective" parameterType="com.sam.ping.ucenter.entity.User"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +55,9 @@
       </if>
       <if test="updateDate != null">
         update_date,
+      </if>
+      <if test="phoneNumber !=null">
+        phone_number,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -78,6 +82,9 @@
       <if test="updateDate != null">
         #{updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="phoneNumber !=null">
+        #{phoneNumber,jdbcType=VARCHAR}
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.sam.ping.ucenter.entity.User">
@@ -101,6 +108,9 @@
       <if test="updateDate != null">
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="phoneNumber !=null">
+       phone_number = #{phoneNumber,jdbcType=VARCHAR}
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,30 @@
       email = #{email,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP}
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--根据手机号和密码查找用户，即登录接口-->
+  <select id="findUserByPwd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where phone_number = #{phoneNumber,jdbcType=VARCHAR} AND pwd = #{pwd,jdbcType=VARCHAR}
+  </select>
+  <!--根据手机号查找用户，即查重接口-->
+  <select id="findUserByPhoneNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where phone_number = #{phoneNumber,jdbcType=VARCHAR}
+  </select>
+
+  <!--查看是否用户名已存在，即查重接口-->
+  <select id="checkUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where name = #{userName,jdbcType=VARCHAR}
+  </select>
 </mapper>
